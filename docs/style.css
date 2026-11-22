@@ -1,0 +1,189 @@
+/* Écrit par Claude Opus 5.5 (claude-opus-5-5, Anthropic) pour Sarah Choukah, 2026-11-22.
+   Palette institutionnelle UOF (normes graphiques 2026), adaptée à la lecture à l’écran :
+   le vert UOF sert d’ornement seulement (2,01:1 sur blanc), les liens sont en bleu ardoise
+   (7,59:1) et passent au magenta (5,97:1) au survol. Titres en Montserrat, texte courant en
+   Libre Franklin, plus lisible en paragraphes et solide pour les diacritiques. */
+
+:root {
+  --vert: #81CA30;
+  --noir: #232323;
+  --ardoise: #36586B;
+  --magenta: #A43594;
+  --fond: #ffffff;
+  --fond-doux: #F5F5F5;
+  --texte: #232323;
+  --texte-2: #555555;
+  --trait: #dddddd;
+  --lien: var(--ardoise);
+  --lien-survol: var(--magenta);
+  --titre: 'Montserrat', system-ui, sans-serif;
+  --courant: 'Libre Franklin', system-ui, sans-serif;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --fond: #1c1c1c;
+    --fond-doux: #262626;
+    --texte: #ececec;
+    --texte-2: #b5b5b5;
+    --trait: #3a3a3a;
+    --lien: #9fd66a;          /* vert UOF éclairci : 10:1 sur le fond sombre */
+    --lien-survol: #e08ad3;   /* magenta éclairci */
+  }
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+
+html { -webkit-text-size-adjust: 100%; }
+
+body {
+  margin: 0;
+  background: var(--fond);
+  color: var(--texte);
+  font-family: var(--courant);
+  font-size: 1.125rem;
+  line-height: 1.65;
+  border-top: 6px solid var(--vert);
+  /* Le français est plus long que l’anglais : coupure des mots et texte aligné à gauche */
+  hyphens: auto;
+  -webkit-hyphens: auto;
+  overflow-wrap: break-word;
+}
+
+main, .entete, .pied {
+  max-width: 42rem;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+.entete { padding-top: 1.5rem; }
+
+.nom-site {
+  font-family: var(--titre);
+  font-weight: 700;
+  font-size: 0.95rem;
+  letter-spacing: 0.02em;
+  color: var(--texte);
+  text-decoration: none;
+}
+.nom-site:hover { color: var(--lien-survol); }
+
+h1, h2, h3, h4 {
+  font-family: var(--titre);
+  font-weight: 700;
+  line-height: 1.25;
+  hyphens: manual;
+  -webkit-hyphens: manual;
+  text-wrap: balance;
+}
+
+h1 {
+  font-size: clamp(1.75rem, 5vw, 2.4rem);
+  margin: 2rem 0 0.5rem;
+  color: var(--texte);
+}
+
+h2 {
+  font-size: 1.35rem;
+  margin: 2.75rem 0 0.75rem;
+  padding-top: 0.75rem;
+  border-top: 2px solid var(--vert);
+  color: var(--texte);
+  scroll-margin-top: 1rem;
+}
+
+h3 { font-size: 1.1rem; font-weight: 600; margin: 1.75rem 0 0.5rem; }
+
+p { margin: 0 0 1rem; }
+
+a {
+  color: var(--lien);
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.18em;
+}
+a:hover { color: var(--lien-survol); text-decoration-thickness: 2px; }
+a:focus-visible {
+  outline: 3px solid var(--ardoise);
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
+ul { padding-left: 1.25rem; margin: 0 0 1rem; }
+li { margin: 0 0 0.6rem; }
+li::marker { color: var(--vert); }
+
+blockquote {
+  margin: 1.25rem 0;
+  padding: 0.75rem 1rem;
+  background: var(--fond-doux);
+  border-left: 4px solid var(--vert);
+}
+blockquote p:last-child { margin-bottom: 0; }
+
+.meta { color: var(--texte-2); font-size: 0.95rem; margin-bottom: 1.5rem; }
+
+/* Sommaire */
+.sommaire {
+  background: var(--fond-doux);
+  padding: 1rem 1.25rem 0.5rem;
+  margin: 1.5rem 0 1rem;
+  border-radius: 0.5rem;
+}
+.sommaire h2 {
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  border: 0;
+  padding: 0;
+  margin: 0 0 0.5rem;
+  color: var(--texte-2);
+}
+.sommaire ul { columns: 2 15rem; column-gap: 2rem; padding-left: 1rem; font-size: 0.98rem; }
+.sommaire li { margin-bottom: 0.35rem; break-inside: avoid; hyphens: manual; -webkit-hyphens: manual; }
+
+/* Accueil */
+.accueil main { padding-top: 2.5rem; }
+.billets { list-style: none; padding: 0; margin: 2rem 0; }
+.billets li {
+  padding: 1rem 0;
+  border-bottom: 1px solid var(--trait);
+  margin: 0;
+}
+.billets li:first-child { border-top: 1px solid var(--trait); }
+.billets a {
+  font-family: var(--titre);
+  font-weight: 600;
+  font-size: 1.2rem;
+  text-decoration: none;
+  color: var(--texte);
+}
+.billets a:hover { color: var(--lien-survol); text-decoration: underline; }
+.billets time { display: block; color: var(--texte-2); font-size: 0.9rem; margin-top: 0.2rem; }
+.resume { margin: 0.4rem 0 0; }
+
+/* Pied de page */
+.pied {
+  margin-top: 4rem;
+  padding-bottom: 2.5rem;
+  font-size: 0.9rem;
+  color: var(--texte-2);
+}
+
+/* Lien d’évitement pour la navigation au clavier */
+.evitement {
+  position: absolute;
+  left: -999px;
+  top: 0.5rem;
+  background: var(--noir);
+  color: #fff;
+  padding: 0.5rem 0.75rem;
+  z-index: 10;
+}
+.evitement:focus { left: 0.5rem; }
+
+@media print {
+  body { border-top: 0; font-size: 11pt; }
+  .sommaire, .pied, .entete, .evitement { display: none; }
+  a { color: inherit; }
+}
